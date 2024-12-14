@@ -1,0 +1,99 @@
+﻿@model List<Frontend.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Transaction List";
+}
+
+<style>
+    .header {
+        height: 65px;
+        margin-left: 222px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+        .header h2 {
+            font-size: 18px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+        }
+
+    .body {
+        background: #F2F2F2;
+        padding: 20px;
+        margin-left: 222px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .btn-Action {
+        width: 128px;
+        height: 52px;
+        background-color: #C7B303; /* Yellow for Edit */
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 20px; /* Rounded corners */
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer; /* Pointer on hover */
+    }
+
+    .btn:hover {
+        opacity: 0.9; /* Subtle hover effect */
+    }
+</style>
+
+<div style="width: 100%; display: flex; align-items: center;" class="header">
+    <img src="~/images/NavbarLogo/TransactionH.png" alt="Transaction Icon" style="width: 35px; height: 35px; margin-left: 40px; margin-right: 9px;">
+    <h2 style="margin: 0 0 0 10px;">Transaction List</h2>
+</div>
+
+<div class="body">
+    <!-- Transaction Details Table -->
+    <div style="background: #E3E3E3; padding: 22px 34px; border: none; border-radius: 8px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
+        <table class="table">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Transaction ID</th>
+                    <th>Student Name</th>
+                    <th>Username</th>
+                    <th>Book Title</th>
+                    <th>Transaction Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model)
+                {
+                    <tr style="text-align:center">
+                        <td>@transaction.TransactionId</td>
+                        <td>@transaction.StudentName</td>
+                        <td>@transaction.Username</td>
+                        <td>@transaction.BookTitle</td>
+                        <td>@transaction.TransactionType</td>
+                        <td>@transaction.Date.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

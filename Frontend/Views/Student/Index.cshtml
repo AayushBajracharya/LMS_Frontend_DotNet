@@ -1,0 +1,201 @@
+﻿@model List<Student>
+
+@{
+    ViewData["Title"] = "Student Info";
+}
+
+<style>
+    .header {
+        height: 65px;
+        margin-left: 222px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+        .header h2 {
+            font-size: 18px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+        }
+
+    .body {
+        background: #F2F2F2;
+        padding: 20px;
+        margin-left: 222px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .card {
+        background: #E3E3E3;
+        padding: 22px 34px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+        height: 65px;
+        background-color: #D9D9D9;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .btn-Action {
+        width: 128px;
+        height: 52px;
+        background-color: #C7B303;
+        color: white;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #F2F2F2;
+        overflow: hidden;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .table thead {
+            background: #5E5E5E;
+            color: white;
+        }
+
+            .table thead th {
+                padding: 14px;
+                text-align: center;
+                font-weight: 600;
+            }
+
+        .table tbody tr {
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+            .table tbody tr:last-child {
+                border-bottom: none;
+            }
+
+        .table tbody td {
+            padding: 14px;
+            color: #333;
+            font-size: 14px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            .table tbody td:last-child {
+                width: 300px;
+            }
+
+            .table tbody td:first-child {
+                width: 100px;
+            }
+
+    .submit-btn {
+        background-color: #255D81;
+        width: 260px;
+        color: white;
+        padding: 21px 56px;
+        border: none;
+        border-radius: 20px;
+    }
+</style>
+
+<div class="header">
+    <img src="~/images/NavbarLogo/StudentH.png" alt="Student Icon" class="me-2" style="width: 35px; height: 35px;">
+    <h2 class="m-0">Student Info</h2>
+</div>
+
+<div class="body">
+    <div class="card mb-4">
+        @{
+            var isEdit = ViewBag.IsEdit ?? false;
+            var student = ViewBag.Student ?? new Student();
+        }
+
+        <form asp-action="@((bool)isEdit ? "EditStudent" : "AddStudent")" method="post">
+            <div class="row mb-3">
+               
+                <input type="text" class="form-control" name="StudentId" value="@student.StudentId" hidden required>
+               
+                <div class="col-md-12">
+                <label class="form-label">Student Name</label>
+                <input type="text" class="form-control" name="Name" value="@student.Name" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="Email" value="@student.Email" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                <label class="form-label">Contact Number</label>
+                <input type="text" class="form-control" name="ContactNumber" value="@student.ContactNumber" required>
+                </div>
+                <div class="col-md-6">
+                <label class="form-label">Department</label>
+                <input type="text" class="form-control" name="Department" value="@student.Department" required>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">@((bool)isEdit ? "Update Student" : "Add Student")</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3 class="fw-semibold pb-3 text-dark">Student Details</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sstudent in Model)
+                {
+                    <tr>
+                        <td>@sstudent.StudentId</td>
+                        <td>@sstudent.Name</td>
+                        <td>@sstudent.Email</td>
+                        <td>@sstudent.ContactNumber</td>
+                        <td>@sstudent.Department</td>
+                        <td>
+                            <form asp-action="indexx" method="post" class="d-inline">
+                                <input type="hidden" name="StudentId" value="@sstudent.StudentId">
+                                <input type="hidden" name="Name" value="@sstudent.Name">
+                                <input type="hidden" name="Email" value="@sstudent.Email">
+                                <input type="hidden" name="ContactNumber" value="@sstudent.ContactNumber">
+                                <input type="hidden" name="Department" value="@sstudent.Department">
+                                <button type="submit" class="btn btn-Action me-2" style="background:#B7A522;">Edit</button>
+                            </form>
+                            <form asp-action="DeleteStudent" method="post" class="d-inline">
+                                <input type="hidden" name="StudentId" value="@sstudent.StudentId">
+                                <button type="submit" class="btn btn-Action" style="background:#D13A3D;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

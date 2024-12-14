@@ -1,0 +1,112 @@
+﻿<style>
+    .vertical-nav {
+        position: fixed; /* Makes the sidebar static and always visible */
+        top: 0; /* Positions it at the top */
+        left: 0; /* Aligns it to the left */
+        width: 222px;
+        height: 100vh;
+        background-color: #255D81;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 51px;
+        z-index: 1030; /* Keeps the sidebar above other elements */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional for better UI */
+    }
+
+        .vertical-nav .logo {
+            width: 152px;
+            height: 62px;
+        }
+
+        .vertical-nav .nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .vertical-nav a {
+            color: white;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            width: 100%;
+            padding: 12px 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .vertical-nav a:hover {
+                background-color: #ffffff;
+                color: #000;
+            }
+
+        .vertical-nav .nav-link.active {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+    /* Adjust the appearance of the icons in the links */
+    .nav-link img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    /* Hover effect for specific icons */
+    .vertical-nav a:hover img {
+        filter: invert(35%) sepia(36%) saturate(600%) hue-rotate(185deg) brightness(90%) contrast(95%);
+    }
+
+    /* Logout section alignment */
+    .vertical-nav .logout-section {
+        margin-top: auto;
+        width: 100%;
+    }
+</style>
+
+<nav class="vertical-nav">
+    <!-- Logo Section -->
+    <div>
+        <img src="~/images/NavbarLogo/Logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+        <a class="nav-link" href="/Dashboard">
+            <img src="~/images/NavbarLogo/Settinng.png" alt="Setting Icon">
+            Dashboard
+        </a>
+        <a class="nav-link Author" href="/Author">
+            <img src="~/images/NavbarLogo/Author.png" alt="Author Icon">
+            Author
+        </a>
+        <a class="nav-link" href="/Books">
+            <img src="~/images/NavbarLogo/Book.png" alt="Books Icon">
+            Books
+        </a>
+        <a class="nav-link" href="/Student">
+            <img src="~/images/NavbarLogo/Student.png" alt="Student Icon">
+            Students
+        </a>
+        <a class="nav-link" href="/TransactionView">
+            <img src="~/images/NavbarLogo/transaction.png" alt="Transaction Icon">
+            Transactions
+        </a>
+        <a class="nav-link" href="/Transaction">
+            <img src="~/images/NavbarLogo/Issuing.png" alt="Issuing Icon">
+            Issuing
+        </a>
+    </div>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+        <a class="nav-link" href="/Authentication/Logout">
+            <img src="~/images/NavbarLogo/Logout.png" alt="Logout Icon">
+            Logout
+        </a>
+    </div>
+</nav>
