@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Frontend.Models;
 
@@ -46,6 +47,13 @@ namespace Presentation.Repositories
         {
             var response = await _httpClient.DeleteAsync($"https://localhost:7238/api/Transactions/{id}");
             return response.IsSuccessStatusCode;
+        }
+        public async Task<List<Transaction>> SearchTransactionsAsync(string search)
+        {
+            return await _httpClient.GetFromJsonAsync<List<Transaction>>($"https://localhost:7238/api/Transactions/search?search={search}");
+
+            //var response = await _httpClient.GetAsync($"https://localhost:7238/api/Transactions/search?search={search}");
+
         }
     }
 }

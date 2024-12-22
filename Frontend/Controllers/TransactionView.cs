@@ -22,6 +22,18 @@ namespace Presentation.Controllers
             var transactions = await _transactionRepository.GetAllTransactionsAsync();
             return View(transactions);
         }
-          
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                // If no search term is provided, redirect to Index or return all transactions.
+                return RedirectToAction(nameof(Index));
+            }
+
+            var transactions = await _transactionRepository.SearchTransactionsAsync(searchTerm);
+            return View("Index", transactions); // Reuse the same view for displaying the search results.
+        }
     }
 }

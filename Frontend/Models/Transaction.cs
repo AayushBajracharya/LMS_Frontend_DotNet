@@ -6,8 +6,8 @@
         public int StudentId { get; set; }
         public int UserId { get; set; }
         public int BookId { get; set; }
-        public string TransactionType { get; set; } // "Borrow" or "Return"
-        public DateTime Date { get; set; } = DateTime.Today; // Default date without time
+        public string TransactionType { get; set; }
+        public DateTime Date { get; set; }
 
         // Additional fields for display
         public string StudentName { get; set; }

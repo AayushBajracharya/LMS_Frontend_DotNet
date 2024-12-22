@@ -12,5 +12,6 @@ namespace Presentation.Repositories
         Task<bool> AddTransactionAsync(TransactionDTO transaction);
         Task<bool> UpdateTransactionAsync(Transaction transaction);
         Task<bool> DeleteTransactionAsync(int id);
+        Task<List<Transaction>> SearchTransactionsAsync(string search = "");
     }
 }

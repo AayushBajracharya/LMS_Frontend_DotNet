@@ -33,7 +33,7 @@ namespace Presentation.Controllers
             HttpContext.Session.SetObjectAsJson("StudentData", studentData);
             HttpContext.Session.SetObjectAsJson("BookData", bookData);
 
-            ///Retrieve username from session
+            //Retrieve username from session
             //ViewBag.Username = HttpContext.Session.GetString("Username");
 
             return View(transactions);

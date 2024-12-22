@@ -148,16 +148,20 @@
     <div class="card mb-4">
         @{
             var isEdit = ViewBag.IsEdit ?? false;
+
             var book = ViewBag.Book ?? new Book();
         }
 
         <form asp-action="@((bool)isEdit ? "EditBook" : "AddBook")" method="post">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="BookId" class="form-label">Book ID</label>
-                    <input type="text" class="form-control" id="BookId" name="BookId" value="@book.BookId" >
+
+                    <input type="text" class="form-control" id="BookId" name="BookId" value="@book.BookId" hidden required>
                 </div>
-                <div class="col-md-6">
+               
+
+                
+                <div class="col-md-12">
                     <label for="ISBN" class="form-label">ISBN</label>
                     <input type="text" class="form-control" id="ISBN" name="ISBN" value="@book.ISBN" required>
                 </div>
@@ -184,9 +188,9 @@
                     <input type="number" class="form-control" id="Quantity" name="Quantity" value="@book.Quantity" required>
                 </div>
             </div>
-                <button type="submit" class="submit-btn">
-                    @((bool)isEdit ? "Update Book" : "Add Book")
-                </button>
+            <button type="submit" class="submit-btn">
+                @((bool)isEdit ? "Update Book" : "Add Book")
+            </button>
         </form>
     </div>
 
@@ -207,6 +211,7 @@
             </thead>
             <tbody>
                 @foreach (var abook in Model)
+
                 {
                     <tr>
                         <td>@abook.BookId</td>
